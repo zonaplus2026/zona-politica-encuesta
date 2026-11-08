@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -25,13 +26,15 @@ main{max-width:680px;margin:0 auto;padding:22px 15px 50px}
 .progress{height:10px;background:#36363b;border-radius:20px;overflow:hidden}
 .bar{height:100%;width:0;background:linear-gradient(90deg,#9b0b17,#f14b56)}
 .percentage{margin-top:8px;text-align:right;font-size:14px;font-weight:bold;color:#ddd}
-.vote{margin-top:12px;width:100%;padding:12px;border-radius:8px;border:1px solid #666;background:#27272c;color:#ccc;font-weight:bold}
-.vote:disabled{opacity:.8}
+.vote{margin-top:12px;width:100%;padding:12px;border-radius:8px;border:1px solid #666;background:#27272c;color:#ccc;font-weight:bold;cursor:pointer}
+.vote:disabled{opacity:.65;cursor:not-allowed}
+#estadoLogin{font-size:13px;line-height:1.5}
 footer{text-align:center;color:#a3a3aa;font-size:12px;padding:20px 16px 35px;line-height:1.6}
 footer strong{color:white}
 </style>
 </head>
 <body>
+
 <header>
 <div class="logos">
 <img src="logo trans horizontal_00000.png" alt="Zona Plus">
@@ -39,38 +42,145 @@ footer strong{color:white}
 </div>
 <div class="eyebrow">Participación ciudadana · Portovelo</div>
 <h1>¿A quién apoyarías para la Alcaldía de Portovelo?</h1>
-<p>Encuesta digital independiente de Zona Plus. Los resultados se publicarán cuando finalice la encuesta y se habilite el sistema de votación verificada.</p>
+<p>
+Encuesta digital independiente de Zona Plus.
+Los resultados se publicarán después de finalizar
+la encuesta y verificar su funcionamiento.
+</p>
 </header>
+
 <main>
 
-  <div style="text-align:center; margin:18px 0;">
-  <button id="loginGoogle" type="button" style="background:#fff;color:#222;border:0;border-radius:9px;padding:13px 20px;font-weight:bold;cursor:pointer;">
-    Ingresar con Google
-  </button>
-  <p id="estadoLogin" style="font-size:13px;"></p>
+<div style="text-align:center;margin:18px 0">
+<button id="loginGoogle" type="button"
+style="background:#fff;color:#222;border:0;border-radius:9px;padding:13px 20px;font-weight:bold;cursor:pointer">
+Ingresar con Google
+</button>
+<p id="estadoLogin">Comprobando sesión...</p>
 </div>
-<div class="notice"><div class="status">● ENCUESTA EN PREPARACIÓN</div><div>Esta es una vista preliminar del diseño. La votación aún no está habilitada y no hay porcentajes reales disponibles. No es una encuesta oficial del CNE ni una muestra estadísticamente representativa.</div></div>
-<div class="candidate"><div class="portrait"><img src="Copia de Copia de Copia de Copia de Copia de Copia de Copia de Copia de Cop_20261028_220446_0000.png" alt="Santiago Valverde"></div><div class="details"><div class="name">Santiago Valverde</div><div class="party">Partido Social Cristiano · PSC</div><div class="progress"><div class="bar"></div></div><div class="percentage">— %</div><button class="vote" type="button" data-orden="1" disabled>Votar (prueba)</button></div></div>
-<div class="candidate"><div class="portrait"><img src="Copia de Copia de Copia de Copia de Copia de Copia de Copia de Copia de Cop_20261028_211832_0000.png" alt="Jorge Andrés Maldonado"></div><div class="details"><div class="name">Jorge Andrés Maldonado</div><div class="party">Acción Democrática Nacional · ADN</div><div class="progress"><div class="bar"></div></div><div class="percentage">— %</div><button class="vote" type="button" data-orden="2" disabled>Votar (prueba)</button></div></div>
-<div class="candidate"><div class="portrait"><img src="Copia de Copia de Copia de Copia de Copia de Copia de Copia de Copia de Cop_20261028_220528_0000.png" alt="Luis Alejandro Maldonado"></div><div class="details"><div class="name">Luis Alejandro Maldonado</div><div class="party">PHD</div><div class="progress"><div class="bar"></div></div><div class="percentage">— %</div><button class="vote" type="button" data-orden="3" disabled>Votar (prueba)</button></div></div>
-<div class="candidate"><div class="portrait"><img src="Copia de Copia de Copia de Copia de Copia de Copia de Copia de Copia de Cop_20261028_220430_0000.png" alt="Wilson Sarango"></div><div class="details"><div class="name">Wilson Sarango</div><div class="party">CREO</div><div class="progress"><div class="bar"></div></div><div class="percentage">— %</div><button class="vote" type="button" data-orden="4" disabled>Votar (prueba)</button></div></div>
-</main>
-<footer><strong>ZONA PLUS</strong> · Noticias claras y sin filtros<br>Zona Política · Porque aquí la política se conversa de frente</footer>
 
-  
+<div class="notice">
+<div class="status" id="estadoEncuesta">● ENCUESTA EN PREPARACIÓN</div>
+<div id="descripcionEncuesta">
+Estamos verificando el sistema de votación.
+Los botones permanecen deshabilitados.
+No es una encuesta oficial del CNE ni una muestra
+estadísticamente representativa.
+</div>
+</div>
+
+<div class="candidate">
+<div class="portrait">
+<img src="Copia de Copia de Copia de Copia de Copia de Copia de Copia de Copia de Cop_20261028_220446_0000.png" alt="Santiago Valverde">
+</div>
+<div class="details">
+<div class="name">Santiago Valverde</div>
+<div class="party">Partido Social Cristiano · PSC</div>
+<div class="progress"><div class="bar"></div></div>
+<div class="percentage">— %</div>
+<button class="vote" type="button" data-orden="1" disabled>Votar (prueba)</button>
+</div>
+</div>
+
+<div class="candidate">
+<div class="portrait">
+<img src="Copia de Copia de Copia de Copia de Copia de Copia de Copia de Cop_20261028_211832_0000.png" alt="Jorge Andrés Maldonado">
+</div>
+<div class="details">
+<div class="name">Jorge Andrés Maldonado</div>
+<div class="party">Acción Democrática Nacional · ADN</div>
+<div class="progress"><div class="bar"></div></div>
+<div class="percentage">— %</div>
+<button class="vote" type="button" data-orden="2" disabled>Votar (prueba)</button>
+</div>
+</div>
+
+<div class="candidate">
+<div class="portrait">
+<img src="Copia de Copia de Copia de Copia de Copia de Copia de Copia de Cop_20261028_220528_0000.png" alt="Luis Alejandro Maldonado">
+</div>
+<div class="details">
+<div class="name">Luis Alejandro Maldonado</div>
+<div class="party">PHD</div>
+<div class="progress"><div class="bar"></div></div>
+<div class="percentage">— %</div>
+<button class="vote" type="button" data-orden="3" disabled>Votar (prueba)</button>
+</div>
+</div>
+
+<div class="candidate">
+<div class="portrait">
+<img src="Copia de Copia de Copia de Copia de Copia de Copia de Copia de Copia de Copia de Cop_20261028_220430_0000.png" alt="Wilson Sarango">
+</div>
+<div class="details">
+<div class="name">Wilson Sarango</div>
+<div class="party">CREO</div>
+<div class="progress"><div class="bar"></div></div>
+<div class="percentage">— %</div>
+<button class="vote" type="button" data-orden="4" disabled>Votar (prueba)</button>
+</div>
+</div>
+
+</main>
+
+<footer>
+<strong>ZONA PLUS</strong> · Noticias claras y sin filtros
+<br>
+Zona Política · Porque aquí la política se conversa de frente
+</footer>
+
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
 <script>
-  const supabaseCliente = supabase.createClient(
-    "https://ltingoacfcwpskayfbyb.supabase.co",
-    "sb_publishable_2N-HLXk6l6PHDDqhEUbFSw_nnlOz08j"
-  );
+const supabaseCliente = supabase.createClient(
+  "https://ltingoacfcwpskayfbyb.supabase.co",
+  "sb_publishable_2N-HLXk6l6PHDDqhEUbFSw_nnlOz08j"
+);
 
-  const encuestaId = "8e1acb02-f588-4c43-9fff-fb3a07d172ae";
-  
+// Encuesta exclusivamente de prueba
+const encuestaId = "8e1acb02-f588-4c43-9fff-fb3a07d172ae";
+
+// Por seguridad, no habilitar sin verificar el sistema
+const VOTACION_PRUEBA_HABILITADA = false;
+
+const botonesVoto = document.querySelectorAll(".vote");
+const candidatosPorOrden = {};
 const botonGoogle = document.getElementById("loginGoogle");
 const estadoLogin = document.getElementById("estadoLogin");
+const estadoEncuesta = document.getElementById("estadoEncuesta");
+const descripcionEncuesta = document.getElementById("descripcionEncuesta");
+
+botonesVoto.forEach(boton => {
+  boton.disabled = true;
+});
+
+async function cargarCandidatos() {
+  const { data, error } = await supabaseCliente
+    .from("candidatos")
+    .select("id, orden")
+    .eq("encuesta_id", encuestaId);
+
+  if (error) {
+    console.error("Error al cargar candidatos:", error);
+    return false;
+  }
+
+  if (!data || data.length !== 4) {
+    console.error("No se encontraron los cuatro candidatos.");
+    return false;
+  }
+
+  data.forEach(candidato => {
+    candidatosPorOrden[candidato.orden] = candidato.id;
+  });
+
+  return [1, 2, 3, 4].every(
+    orden => Boolean(candidatosPorOrden[orden])
+  );
+}
 
 botonGoogle.addEventListener("click", async () => {
+  botonGoogle.disabled = true;
+
   const { error } = await supabaseCliente.auth.signInWithOAuth({
     provider: "google",
     options: {
@@ -80,21 +190,165 @@ botonGoogle.addEventListener("click", async () => {
 
   if (error) {
     estadoLogin.textContent = "Error al ingresar: " + error.message;
+    botonGoogle.disabled = false;
   }
 });
 
-async function comprobarSesion() {
-  const { data: { user } } = await supabaseCliente.auth.getUser();
+async function registrarVoto(boton) {
+  if (!VOTACION_PRUEBA_HABILITADA) return;
 
-  if (user) {
+  const orden = Number(boton.dataset.orden);
+  const candidatoId = candidatosPorOrden[orden];
+
+  if (!candidatoId) {
+    estadoLogin.textContent = "No se encontró el candidato.";
+    return;
+  }
+
+  const { data: { user }, error: errorSesion } =
+    await supabaseCliente.auth.getUser();
+
+  if (errorSesion || !user) {
+    estadoLogin.textContent = "Primero debes ingresar con Google.";
+    return;
+  }
+
+  const nombre = boton.closest(".candidate")
+    .querySelector(".name").textContent;
+
+  const confirmado = window.confirm(
+    "¿Confirmas tu voto de prueba por " + nombre +
+    "? No podrás cambiarlo."
+  );
+
+  if (!confirmado) return;
+
+  botonesVoto.forEach(b => b.disabled = true);
+  estadoLogin.textContent = "Registrando tu voto de prueba...";
+
+  const { error } = await supabaseCliente.rpc(
+    "registrar_voto",
+    {
+      p_encuesta_id: encuestaId,
+      p_candidato_id: candidatoId
+    }
+  );
+
+  if (error) {
+    console.error("Error al votar:", error);
+
+    if (error.code === "23505") {
+      estadoLogin.textContent =
+        "Esta cuenta ya registró un voto en la encuesta.";
+    } else {
+      estadoLogin.textContent =
+        "No se pudo registrar el voto: " + error.message;
+    }
+
+    return;
+  }
+
+  estadoLogin.textContent =
+    "Tu voto de prueba se registró correctamente.";
+
+  estadoEncuesta.textContent =
+    "● VOTO DE PRUEBA REGISTRADO";
+
+  descripcionEncuesta.textContent =
+    "Gracias por participar en la prueba interna. " +
+    "Los resultados no se muestran durante la votación.";
+}
+
+async function iniciarSistema() {
+  try {
+    const { data: { user }, error } =
+      await supabaseCliente.auth.getUser();
+
+    if (error) {
+      console.error("Error de sesión:", error);
+      estadoLogin.textContent =
+        "No se pudo comprobar la sesión.";
+      return;
+    }
+
+    if (!user) {
+      estadoLogin.textContent =
+        "Puedes ingresar con tu cuenta de Google.";
+      return;
+    }
+
     botonGoogle.textContent = "Sesión iniciada";
     botonGoogle.disabled = true;
-    estadoLogin.textContent = "Bienvenido. Tu cuenta está identificada.";
+
+    estadoLogin.textContent =
+      "Bienvenido. Tu cuenta está identificada.";
+
+    const candidatosCargados = await cargarCandidatos();
+
+    if (!candidatosCargados) {
+      estadoLogin.textContent =
+        "Sesión iniciada. Error al cargar los candidatos.";
+      return;
+    }
+
+    if (!VOTACION_PRUEBA_HABILITADA) {
+      estadoLogin.textContent =
+        "Sesión iniciada. Sistema en preparación.";
+      return;
+    }
+
+    const { data: encuesta, error: errorEncuesta } =
+      await supabaseCliente
+        .from("encuestas")
+        .select("estado, fecha_inicio, fecha_cierre")
+        .eq("id", encuestaId)
+        .single();
+
+    if (errorEncuesta || !encuesta) {
+      estadoLogin.textContent =
+        "No se pudo comprobar la encuesta.";
+      return;
+    }
+
+    const ahora = Date.now();
+    const inicio = Date.parse(encuesta.fecha_inicio);
+    const cierre = Date.parse(encuesta.fecha_cierre);
+
+    if (
+      encuesta.estado !== "abierta" ||
+      !Number.isFinite(inicio) ||
+      !Number.isFinite(cierre) ||
+      ahora < inicio ||
+      ahora >= cierre
+    ) {
+      estadoLogin.textContent =
+        "La encuesta de prueba no está abierta.";
+      return;
+    }
+
+    botonesVoto.forEach(boton => {
+      boton.disabled = false;
+    });
+
+    estadoEncuesta.textContent =
+      "● VOTACIÓN DE PRUEBA";
+
+    descripcionEncuesta.textContent =
+      "Prueba interna del sistema. " +
+      "Cada cuenta puede registrar un solo voto.";
+
+  } catch (error) {
+    console.error("Error al iniciar:", error);
+    estadoLogin.textContent =
+      "Ocurrió un error al iniciar el sistema.";
   }
 }
 
-comprobarSesion();
+botonesVoto.forEach(boton => {
+  boton.addEventListener("click", () => registrarVoto(boton));
+});
 
+iniciarSistema();
 </script>
 
 </body>
