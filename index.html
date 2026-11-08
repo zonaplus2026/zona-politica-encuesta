@@ -7,33 +7,36 @@
 <title>Zona Política | Encuesta ciudadana</title>
 <style>
 *{box-sizing:border-box}
-body{margin:0;background:#0b0b0e;color:#fff;font-family:Arial,Helvetica,sans-serif}
-header{padding:26px 16px;text-align:center;background:linear-gradient(145deg,#18181b,#080809);border-bottom:3px solid #b70d19}
+body{margin:0;background:#0b0b0e;color:white;font-family:Arial,sans-serif}
+header{text-align:center;padding:26px 16px;background:linear-gradient(145deg,#18181b,#080809);border-bottom:3px solid #b70d19}
 .logos{display:flex;justify-content:center;align-items:center;gap:15px;flex-wrap:wrap}
 .logos img{max-width:145px;max-height:75px;object-fit:contain}
-.eyebrow{color:#f1b4b8;text-transform:uppercase;letter-spacing:2px;font-size:11px;margin:23px 0 7px}
+.eyebrow{color:#f1b4b8;letter-spacing:2px;font-size:11px;margin:23px 0 8px;text-transform:uppercase}
 h1{font-size:clamp(25px,6vw,38px);margin:0 0 12px}
-header p{color:#c7c7cc;font-size:14px;line-height:1.5;max-width:560px;margin:0 auto}
-main{max-width:680px;margin:0 auto;padding:22px 15px 50px}
-.notice{background:#1a1a1f;border:1px solid #39393e;border-radius:12px;padding:15px;line-height:1.5;font-size:13px;color:#ddd;margin-bottom:20px}
-.status{display:inline-block;color:#ffb5ba;font-weight:bold;margin-bottom:8px}
+header p{color:#c7c7cc;font-size:14px;line-height:1.6}
+main{max-width:680px;margin:auto;padding:22px 15px 45px}
+.notice,.dates{background:#1a1a1f;border:1px solid #39393e;border-radius:12px;padding:16px;margin-bottom:18px;line-height:1.6;font-size:13px}
+.status{color:#ffb5ba;font-weight:bold;margin-bottom:10px}
+.dates{text-align:center;border-color:#8d1721}
+.dates strong{color:#ffb5ba;font-size:20px}
 .candidate{display:flex;gap:15px;align-items:center;background:#17171b;border:1px solid #303036;border-radius:15px;padding:14px;margin:12px 0}
 .portrait{flex:0 0 86px;width:86px;height:105px;border-radius:9px;background:#303036;overflow:hidden}
-.portrait img{display:block;width:100%;height:100%;object-fit:cover;object-position:center 25%}
+.portrait img{width:100%;height:100%;object-fit:cover;object-position:center 25%}
 .details{flex:1;min-width:0}
-.name{font-size:17px;font-weight:800;line-height:1.25}
+.name{font-size:17px;font-weight:800}
 .party{color:#ffadb3;font-size:12px;margin:5px 0 13px}
 .progress{height:10px;background:#36363b;border-radius:20px;overflow:hidden}
 .bar{height:100%;width:0;background:linear-gradient(90deg,#9b0b17,#f14b56);transition:width .4s}
-.percentage{margin-top:8px;text-align:right;font-size:14px;font-weight:bold;color:#ddd}
-.vote{margin-top:12px;width:100%;padding:12px;border-radius:8px;border:1px solid #b70d19;background:#9b0b17;color:#fff;font-weight:bold;cursor:pointer}
-.vote:disabled{opacity:.5;cursor:not-allowed;background:#27272c;border-color:#666}
-#estadoLogin{font-size:13px;line-height:1.5}
-footer{text-align:center;color:#a3a3aa;font-size:12px;padding:20px 16px 35px;line-height:1.6}
+.percentage{text-align:right;margin-top:8px;font-size:14px;font-weight:bold}
+.vote{width:100%;margin-top:12px;padding:12px;border-radius:8px;border:1px solid #b70d19;background:#a00d1a;color:white;font-weight:bold;cursor:pointer}
+.vote:disabled{background:#27272c;border-color:#666;opacity:.65;cursor:not-allowed}
+#estadoLogin{font-size:13px;line-height:1.6}
+footer{text-align:center;color:#a3a3aa;font-size:12px;padding:20px;line-height:1.6}
 footer strong{color:white}
 </style>
 </head>
 <body>
+
 <header>
 <div class="logos">
 <img src="logo trans horizontal_00000.png" alt="Zona Plus">
@@ -41,51 +44,97 @@ footer strong{color:white}
 </div>
 <div class="eyebrow">Participación ciudadana · Portovelo</div>
 <h1>¿A quién apoyarías para la Alcaldía de Portovelo?</h1>
-<p>Encuesta digital independiente de Zona Plus. Los resultados de esta prueba se actualizan automáticamente.</p>
+<p>Encuesta digital independiente de Zona Plus. Participa y sigue los resultados actualizados.</p>
 </header>
+
 <main>
+
+<div class="dates">
+<div>PERÍODO DE VOTACIÓN</div>
+<strong>12 AL 20 DE NOVIEMBRE DE 2026</strong>
+<div>Hora de Ecuador</div>
+<p id="estadoFechas">Próxima apertura</p>
+</div>
+
 <div style="text-align:center;margin:18px 0">
-<button id="loginGoogle" type="button" style="background:#fff;color:#222;border:0;border-radius:9px;padding:13px 20px;font-weight:bold;cursor:pointer">Ingresar con Google</button>
+<button id="loginGoogle" type="button" style="background:white;color:#222;border:0;border-radius:9px;padding:13px 20px;font-weight:bold;cursor:pointer">
+Ingresar con Google
+</button>
 <p id="estadoLogin" role="status">Comprobando sesión...</p>
 </div>
+
 <div class="notice">
-<div class="status" id="estadoEncuesta">● PARTICIPA EN NUESTRA ENCUESTA CIUDADANA</div>
-<div id="descripcionEncuesta">Para participar, inicia sesión con tu cuenta de Google y selecciona al candidato de tu preferencia.
-Cada cuenta de Google podrá registrar un solo voto, el cual no podrá modificarse una vez confirmado.
-Los resultados y porcentajes se actualizarán automáticamente conforme se registren las participaciones.
-Encuesta digital independiente de Zona Plus. No constituye una encuesta oficial del CNE ni una muestra estadísticamente representativa..</div>
-<p id="totalVotos" style="margin-bottom:0;font-weight:bold">Cargando resultados...</p>
+<div class="status">● PARTICIPA EN NUESTRA ENCUESTA CIUDADANA</div>
+Para participar, inicia sesión con tu cuenta de Google y selecciona al candidato de tu preferencia.
+<br><br>
+<b>Cada cuenta de Google podrá registrar un solo voto</b>, que no podrá modificarse después de confirmarlo.
+<br><br>
+Los votos y porcentajes se actualizarán automáticamente conforme se registren las participaciones.
+<br><br>
+Esta encuesta independiente de Zona Plus no es oficial del CNE ni representa una muestra estadística de toda la población.
+<p id="totalVotos" style="font-weight:bold;margin-bottom:0">Los resultados estarán disponibles al iniciar la encuesta.</p>
 </div>
+
 <div class="candidate">
-<div class="portrait"><img src="Copia de Copia de Copia de Copia de Copia de Copia de Copia de Copia de Cop_20261028_220446_0000.png" alt="Santiago Valverde"></div>
-<div class="details"><div class="name">Santiago Valverde</div><div class="party">Partido Social Cristiano · PSC</div>
+<div class="portrait">
+<img src="Copia de Copia de Copia de Copia de Copia de Copia de Copia de Copia de Cop_20261028_220446_0000.png" alt="Santiago Valverde">
+</div>
+<div class="details">
+<div class="name">Santiago Valverde</div>
+<div class="party">Partido Social Cristiano · PSC</div>
 <div class="progress"><div class="bar" data-bar="1"></div></div>
-<div class="percentage" data-porcentaje="1">— % · — votos</div>
-<button class="vote" type="button" data-orden="1" disabled>Votar (prueba)</button>
-</div></div>
+<div class="percentage" data-porcentaje="1">— %</div>
+<button class="vote" data-orden="1" disabled>Votar</button>
+</div>
+</div>
+
 <div class="candidate">
-<div class="portrait"><img src="Copia de Copia de Copia de Copia de Copia de Copia de Copia de Copia de Cop_20261028_211832_0000.png" alt="Jorge Andrés Maldonado"></div>
-<div class="details"><div class="name">Jorge Andrés Maldonado</div><div class="party">Acción Democrática Nacional · ADN</div>
+<div class="portrait">
+<img src="Copia de Copia de Copia de Copia de Copia de Copia de Copia de Copia de Cop_20261028_211832_0000.png" alt="Jorge Andrés Maldonado">
+</div>
+<div class="details">
+<div class="name">Jorge Andrés Maldonado</div>
+<div class="party">Acción Democrática Nacional · ADN</div>
 <div class="progress"><div class="bar" data-bar="2"></div></div>
-<div class="percentage" data-porcentaje="2">— % · — votos</div>
-<button class="vote" type="button" data-orden="2" disabled>Votar (prueba)</button>
-</div></div>
+<div class="percentage" data-porcentaje="2">— %</div>
+<button class="vote" data-orden="2" disabled>Votar</button>
+</div>
+</div>
+
 <div class="candidate">
-<div class="portrait"><img src="Copia de Copia de Copia de Copia de Copia de Copia de Copia de Copia de Cop_20261028_220528_0000.png" alt="Luis Alejandro Maldonado"></div>
-<div class="details"><div class="name">Luis Alejandro Maldonado</div><div class="party">PHD</div>
+<div class="portrait">
+<img src="Copia de Copia de Copia de Copia de Copia de Copia de Copia de Cop_20261028_220528_0000.png" alt="Luis Alejandro Maldonado">
+</div>
+<div class="details">
+<div class="name">Luis Alejandro Maldonado</div>
+<div class="party">PHD</div>
 <div class="progress"><div class="bar" data-bar="3"></div></div>
-<div class="percentage" data-porcentaje="3">— % · — votos</div>
-<button class="vote" type="button" data-orden="3" disabled>Votar (prueba)</button>
-</div></div>
+<div class="percentage" data-porcentaje="3">— %</div>
+<button class="vote" data-orden="3" disabled>Votar</button>
+</div>
+</div>
+
 <div class="candidate">
-<div class="portrait"><img src="Copia de Copia de Copia de Copia de Copia de Copia de Copia de Copia de Cop_20261028_220430_0000.png" alt="Wilson Sarango"></div>
-<div class="details"><div class="name">Wilson Sarango</div><div class="party">CREO</div>
+<div class="portrait">
+<img src="Copia de Copia de Copia de Copia de Copia de Copia de Copia de Cop_20261028_220430_0000.png" alt="Wilson Sarango">
+</div>
+<div class="details">
+<div class="name">Wilson Sarango</div>
+<div class="party">CREO</div>
 <div class="progress"><div class="bar" data-bar="4"></div></div>
-<div class="percentage" data-porcentaje="4">— % · — votos</div>
-<button class="vote" type="button" data-orden="4" disabled>Votar (prueba)</button>
-</div></div>
+<div class="percentage" data-porcentaje="4">— %</div>
+<button class="vote" data-orden="4" disabled>Votar</button>
+</div>
+</div>
+
 </main>
-<footer><strong>ZONA PLUS</strong> · Noticias claras y sin filtros<br>Zona Política · Porque aquí la política se conversa de frente</footer>
+
+<footer>
+<strong>ZONA PLUS</strong> · Noticias claras y sin filtros
+<br>
+Zona Política · Porque aquí la política se conversa de frente
+</footer>
+
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
 <script>
 const supabaseCliente = supabase.createClient(
@@ -93,99 +142,140 @@ const supabaseCliente = supabase.createClient(
   "sb_publishable_2N-HLXk6l6PHDDqhEUbFSw_nnlOz08j"
 );
 
-// IMPORTANTE: solo encuesta interna de prueba.
-const encuestaId = "8e1acb02-f588-4c43-9fff-fb3a07d172ae";
-const botonesVoto = [...document.querySelectorAll(".vote")];
-const candidatosPorOrden = {};
-const botonGoogle = document.getElementById("loginGoogle");
-const estadoLogin = document.getElementById("estadoLogin");
-const estadoEncuesta = document.getElementById("estadoEncuesta");
-const totalVotos = document.getElementById("totalVotos");
-let sesionValida = false;
-let encuestaAbierta = false;
+// Encuesta definitiva, separada de las pruebas.
+const encuestaId = "8aeb6453-149e-4d59-9fb8-daae236ec770";
+
+// Fechas en hora de Ecuador.
+// Inicio: 12 de noviembre, 00:00.
+// Cierre: 21 de noviembre, 00:00.
+// El último día para votar es el 20 de noviembre.
+const inicio = Date.parse("2026-11-12T00:00:00-05:00");
+const cierre = Date.parse("2026-11-21T00:00:00-05:00");
+
+// Se habilitará después de configurar Supabase.
+const LANZAMIENTO_AUTORIZADO = false;
+
+const botones = [...document.querySelectorAll(".vote")];
+const candidatos = {};
+const login = document.getElementById("loginGoogle");
+const mensaje = document.getElementById("estadoLogin");
+const fechas = document.getElementById("estadoFechas");
+const totalElemento = document.getElementById("totalVotos");
+
+let usuario = null;
+let abierta = false;
 let enviando = false;
-let votoRegistrado = false;
+let yaVoto = false;
+
+function estadoPeriodo() {
+  const ahora = Date.now();
+
+  if (ahora < inicio) {
+    fechas.textContent = "La votación comenzará el 12 de noviembre.";
+  } else if (ahora >= cierre) {
+    fechas.textContent = "La votación ha finalizado.";
+  } else if (!abierta) {
+    fechas.textContent = "La apertura de la votación está pendiente.";
+  } else {
+    fechas.textContent = "Votación abierta · Participa ahora";
+  }
+}
 
 function actualizarBotones() {
-  botonesVoto.forEach(b => {
+  botones.forEach(b => {
     b.disabled = !(
-      sesionValida &&
-      encuestaAbierta &&
+      LANZAMIENTO_AUTORIZADO &&
+      abierta &&
+      usuario &&
       !enviando &&
-      !votoRegistrado &&
-      candidatosPorOrden[b.dataset.orden]
+      !yaVoto &&
+      candidatos[b.dataset.orden]
     );
   });
 }
 
 async function cargarCandidatos() {
-  const {data,error} = await supabaseCliente.from("candidatos")
-    .select("id,orden").eq("encuesta_id",encuestaId);
+  const {data,error} = await supabaseCliente
+    .from("candidatos")
+    .select("id,orden")
+    .eq("encuesta_id",encuestaId);
 
-  if (error || !data || data.length !== 4) {
-    throw new Error(error?.message || "No se encontraron cuatro candidatos");
+  if (error) throw error;
+
+  if (!data || data.length !== 4) {
+    throw new Error("No se encontraron los cuatro candidatos.");
   }
 
-  data.forEach(c => {
-    candidatosPorOrden[c.orden] = c.id;
-  });
+  data.forEach(c => candidatos[c.orden] = c.id);
 
-  if (![1,2,3,4].every(n => candidatosPorOrden[n])) {
-    throw new Error("Falta un candidato");
+  if (![1,2,3,4].every(n => candidatos[n])) {
+    throw new Error("Falta configurar un candidato.");
   }
 }
 
-async function comprobarEncuesta() {
-  const {data,error} = await supabaseCliente.from("encuestas")
-    .select("estado,fecha_inicio,fecha_cierre")
-    .eq("id",encuestaId).single();
+async function comprobarApertura() {
+  abierta = false;
 
-  if (error || !data) {
-    throw new Error(error?.message || "No se pudo consultar la encuesta");
+  if (!LANZAMIENTO_AUTORIZADO) {
+    actualizarBotones();
+    estadoPeriodo();
+    return;
   }
+
+  const {data,error} = await supabaseCliente
+    .from("encuestas")
+    .select("estado,fecha_inicio,fecha_cierre")
+    .eq("id",encuestaId)
+    .single();
+
+  if (error) throw error;
 
   const ahora = Date.now();
-  encuestaAbierta = data.estado === "abierta" &&
-    Number.isFinite(Date.parse(data.fecha_inicio)) &&
-    Number.isFinite(Date.parse(data.fecha_cierre)) &&
-    ahora >= Date.parse(data.fecha_inicio) &&
-    ahora < Date.parse(data.fecha_cierre);
+
+  abierta = Boolean(
+    data &&
+    data.estado === "abierta" &&
+    Date.parse(data.fecha_inicio) === inicio &&
+    Date.parse(data.fecha_cierre) === cierre &&
+    ahora >= inicio &&
+    ahora < cierre
+  );
 
   actualizarBotones();
-
-  if (!encuestaAbierta) {
-    estadoEncuesta.textContent =
-      "● PRUEBA INTERNA CERRADA O FUERA DE FECHA";
-  }
+  estadoPeriodo();
 }
 
 async function actualizarResultados() {
+  if (!LANZAMIENTO_AUTORIZADO) {
+    totalElemento.textContent =
+      "Los resultados estarán disponibles al iniciar la encuesta.";
+    return;
+  }
+
   const {data,error} = await supabaseCliente.rpc(
     "resultados_encuesta",
     {p_encuesta_id:encuestaId}
   );
 
   if (error) {
-    console.error("Error al obtener resultados:",error);
-    totalVotos.textContent =
+    console.error(error);
+    totalElemento.textContent =
       "No se pudieron actualizar los resultados.";
     return;
   }
 
-  const totales = {};
-
-  (data || []).forEach(fila => {
-    totales[fila.candidato_id] =
-      Number(fila.total_votos) || 0;
+  const votos = {};
+  (data || []).forEach(c => {
+    votos[c.candidato_id] = Number(c.total_votos) || 0;
   });
 
-  const total = Object.values(totales)
-    .reduce((a,b) => a+b,0);
+  const total = Object.values(votos)
+    .reduce((s,n) => s+n,0);
 
-  botonesVoto.forEach(b => {
+  botones.forEach(b => {
     const orden = b.dataset.orden;
-    const votos = totales[candidatosPorOrden[orden]] || 0;
-    const porcentaje = total ? (votos * 100 / total) : 0;
+    const cantidad = votos[candidatos[orden]] || 0;
+    const porcentaje = total ? cantidad * 100 / total : 0;
 
     document.querySelector(
       `[data-bar="${orden}"]`
@@ -195,16 +285,15 @@ async function actualizarResultados() {
       `[data-porcentaje="${orden}"]`
     ).textContent =
       porcentaje.toFixed(1) + "% · " +
-      votos + " voto" + (votos===1?"":"s");
+      cantidad + " voto" + (cantidad===1?"":"s");
   });
 
-  totalVotos.textContent =
-    "Total registrado en la prueba: " +
-    total + " voto" + (total===1?"":"s");
+  totalElemento.textContent =
+    "Total de participaciones: " + total;
 }
 
-botonGoogle.addEventListener("click",async () => {
-  botonGoogle.disabled = true;
+login.addEventListener("click", async () => {
+  login.disabled = true;
 
   const {error} = await supabaseCliente.auth.signInWithOAuth({
     provider:"google",
@@ -214,85 +303,80 @@ botonGoogle.addEventListener("click",async () => {
   });
 
   if (error) {
-    estadoLogin.textContent =
-      "Error al ingresar: " + error.message;
-    botonGoogle.disabled = false;
+    mensaje.textContent = "Error: " + error.message;
+    login.disabled = false;
   }
 });
 
-async function registrarVoto(boton) {
-  if (boton.disabled || enviando || votoRegistrado) return;
+async function votar(boton) {
+  if (boton.disabled || enviando || yaVoto || !abierta) return;
 
-  const candidatoId =
-    candidatosPorOrden[boton.dataset.orden];
-
-  if (!candidatoId) return;
+  const id = candidatos[boton.dataset.orden];
+  if (!id) return;
 
   const nombre = boton.closest(".candidate")
     .querySelector(".name").textContent;
 
-  if (!window.confirm(
-    "¿Confirmas tu voto de PRUEBA por " +
-    nombre + "? No podrás cambiarlo."
+  if (!confirm(
+    "¿Confirmas tu voto por " + nombre +
+    "? No podrás modificarlo."
   )) return;
 
   enviando = true;
   actualizarBotones();
-  estadoLogin.textContent =
-    "Registrando voto de prueba...";
+  mensaje.textContent = "Registrando tu voto...";
 
   try {
     const {data:{user},error:authError} =
       await supabaseCliente.auth.getUser();
 
     if (authError || !user) {
-      throw new Error(
-        "Tu sesión expiró. Ingresa con Google nuevamente."
-      );
+      throw new Error("Inicia sesión nuevamente con Google.");
     }
 
     const {error} = await supabaseCliente.rpc(
       "registrar_voto",
       {
         p_encuesta_id:encuestaId,
-        p_candidato_id:candidatoId
+        p_candidato_id:id
       }
     );
 
     if (error) {
       if (error.code === "23505") {
-        votoRegistrado = true;
-        estadoLogin.textContent =
-          "Esta cuenta ya votó en la encuesta de prueba.";
+        yaVoto = true;
+        mensaje.textContent =
+          "Esta cuenta ya registró su voto.";
         return;
       }
       throw error;
     }
 
-    votoRegistrado = true;
-    estadoLogin.textContent =
-      "¡Tu voto de prueba fue registrado!";
+    yaVoto = true;
+    mensaje.textContent =
+      "¡Tu voto fue registrado correctamente!";
 
     await actualizarResultados();
 
-  } catch (error) {
-    console.error("Error al registrar voto:",error);
-    estadoLogin.textContent =
-      "No se pudo registrar el voto: " + error.message;
+  } catch(e) {
+    console.error(e);
+    mensaje.textContent =
+      "No se pudo registrar el voto: " + e.message;
   } finally {
     enviando = false;
     actualizarBotones();
   }
 }
 
-botonesVoto.forEach(b => {
-  b.addEventListener("click",() => registrarVoto(b));
+botones.forEach(b => {
+  b.addEventListener("click",() => votar(b));
 });
 
 async function iniciar() {
   try {
+    estadoPeriodo();
     await cargarCandidatos();
-    await comprobarEncuesta();
+    await comprobarApertura();
     await actualizarResultados();
 
     const {data:{user},error} =
@@ -300,28 +384,26 @@ async function iniciar() {
 
     if (error) throw error;
 
-    sesionValida = Boolean(user);
+    usuario = user;
 
-    if (sesionValida) {
-      botonGoogle.textContent = "Sesión iniciada";
-      botonGoogle.disabled = true;
-
-      estadoLogin.textContent = encuestaAbierta
-        ? "Cuenta identificada. Puedes emitir un voto de prueba."
-        : "Cuenta identificada. La prueba no está abierta.";
+    if (usuario) {
+      login.textContent = "Sesión iniciada";
+      login.disabled = true;
+      mensaje.textContent = abierta
+        ? "Tu cuenta está registrada. Puedes votar por el candidato de tu preferencia."
+        : "Tu cuenta está registrada. Podrás votar cuando se habilite la encuesta.";
     } else {
-      estadoLogin.textContent =
-        "Ingresa con Google para votar en la prueba.";
+      mensaje.textContent =
+        "Inicia sesión con Google para participar.";
     }
 
     actualizarBotones();
 
-  } catch (error) {
-    console.error("Error de configuración:",error);
-    estadoLogin.textContent =
-      "No se pudo preparar la prueba: " + error.message;
-
-    botonesVoto.forEach(b => b.disabled = true);
+  } catch(e) {
+    console.error(e);
+    mensaje.textContent =
+      "No se pudo cargar la encuesta: " + e.message;
+    botones.forEach(b => b.disabled = true);
   }
 }
 
@@ -329,12 +411,15 @@ iniciar();
 
 setInterval(async () => {
   try {
-    await comprobarEncuesta();
-    await actualizarResultados();
-  } catch (error) {
-    console.error("Error de actualización:",error);
+    await comprobarApertura();
+    if (LANZAMIENTO_AUTORIZADO) {
+      await actualizarResultados();
+    }
+  } catch(e) {
+    console.error(e);
   }
 },15000);
 </script>
+
 </body>
 </html>
