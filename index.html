@@ -42,6 +42,13 @@ footer strong{color:white}
 <p>Encuesta digital independiente de Zona Plus. Los resultados se publicarán cuando finalice la encuesta y se habilite el sistema de votación verificada.</p>
 </header>
 <main>
+
+  <div style="text-align:center; margin:18px 0;">
+  <button id="loginGoogle" type="button" style="background:#fff;color:#222;border:0;border-radius:9px;padding:13px 20px;font-weight:bold;cursor:pointer;">
+    Ingresar con Google
+  </button>
+  <p id="estadoLogin" style="font-size:13px;"></p>
+</div>
 <div class="notice"><div class="status">● ENCUESTA EN PREPARACIÓN</div><div>Esta es una vista preliminar del diseño. La votación aún no está habilitada y no hay porcentajes reales disponibles. No es una encuesta oficial del CNE ni una muestra estadísticamente representativa.</div></div>
 <div class="candidate"><div class="portrait"><img src="Copia de Copia de Copia de Copia de Copia de Copia de Copia de Copia de Cop_20261028_220446_0000.png" alt="Santiago Valverde"></div><div class="details"><div class="name">Santiago Valverde</div><div class="party">Partido Social Cristiano · PSC</div><div class="progress"><div class="bar"></div></div><div class="percentage">— %</div><button class="vote" disabled>Próximamente</button></div></div>
 <div class="candidate"><div class="portrait"><img src="Copia de Copia de Copia de Copia de Copia de Copia de Copia de Copia de Cop_20261028_211832_0000.png" alt="Jorge Andrés Maldonado"></div><div class="details"><div class="name">Jorge Andrés Maldonado</div><div class="party">Acción Democrática Nacional · ADN</div><div class="progress"><div class="bar"></div></div><div class="percentage">— %</div><button class="vote" disabled>Próximamente</button></div></div>
@@ -59,6 +66,35 @@ footer strong{color:white}
   );
 
   const encuestaId = "8aeb6453-149e-4d59-9fb8-daae236ec770";
+  
+const botonGoogle = document.getElementById("loginGoogle");
+const estadoLogin = document.getElementById("estadoLogin");
+
+botonGoogle.addEventListener("click", async () => {
+  const { error } = await supabaseCliente.auth.signInWithOAuth({
+    provider: "google",
+    options: {
+      redirectTo: window.location.origin + window.location.pathname
+    }
+  });
+
+  if (error) {
+    estadoLogin.textContent = "Error al ingresar: " + error.message;
+  }
+});
+
+async function comprobarSesion() {
+  const { data: { user } } = await supabaseCliente.auth.getUser();
+
+  if (user) {
+    botonGoogle.textContent = "Sesión iniciada";
+    botonGoogle.disabled = true;
+    estadoLogin.textContent = "Bienvenido. Tu cuenta está identificada.";
+  }
+}
+
+comprobarSesion();
+
 </script>
 
 </body>
