@@ -379,12 +379,10 @@ async function iniciar() {
     await comprobarApertura();
     await actualizarResultados();
 
-    const {data:{user},error} =
-      await supabaseCliente.auth.getUser();
+const {data,error} =
+  await supabaseCliente.auth.getSession();
 
-    if (error) throw error;
-
-    usuario = user;
+usuario = data?.session?.user || null;
 
     if (usuario) {
       login.textContent = "Sesión iniciada";
